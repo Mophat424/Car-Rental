@@ -137,12 +137,23 @@ export const InsuranceTable = pgTable("insurance", {
 
 
 // USERS TABLE (for Authentication) - Simplified without pgEnum and timestamp
+// export const UsersTable = pgTable('users', {
+//     id: serial('id').primaryKey(),
+//     email: varchar('email', { length: 255 }).notNull().unique(),
+//     password: varchar('password', { length: 255 }).notNull(),
+//     role: varchar('role', { length: 50 }).notNull().default('customer'), // Using varchar with default instead of pgEnum
+//     createdAt: date('createdAt').notNull().default('now()') // Using date with now() function instead of timestamp
+// });
+
+
 export const UsersTable = pgTable('users', {
-    id: serial('id').primaryKey(),
-    email: varchar('email', { length: 255 }).notNull().unique(),
-    password: varchar('password', { length: 255 }).notNull(),
-    role: varchar('role', { length: 50 }).notNull().default('customer'), // Using varchar with default instead of pgEnum
-    createdAt: date('createdAt').notNull().default('now()') // Using date with now() function instead of timestamp
+  id: serial('id').primaryKey(),
+  email: varchar('email', { length: 255 }).notNull().unique(),
+  password: varchar('password', { length: 255 }).notNull(),
+  role: varchar('role', { length: 50 }).notNull().default('customer'),
+  createdAt: date('createdAt').notNull().default('now()'),
+  verificationCode: varchar('verificationCode', { length: 6 }), // for 6-digit OTP
+  isVerified: boolean('isVerified').notNull().default(false),   // track email verification
 });
 
 

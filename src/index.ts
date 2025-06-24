@@ -96,7 +96,6 @@ import db from './Drizzle/db';
 import { UsersTable } from './Drizzle/schema';
 import carRouter from './Car/carRouter';
 import customerRouter from './Customer/customerRouter'; // 
-import { sendWelcomeEmail } from './services/emailService';
 import userRouter from './User/userRouter';
 import paymentsRouter from './Payments/paymentsRouter';
 import maintenanceRouter from './Maintenance/maintenanceRouter';
@@ -123,8 +122,6 @@ app.use('/payments', paymentsRouter);
 app.use('/maintenance', maintenanceRouter);
 
 
-// Optional email test
-sendWelcomeEmail('test@example.com').catch(console.error);
 
 // DB Connection check
 db.select()

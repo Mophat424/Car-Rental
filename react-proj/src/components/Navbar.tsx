@@ -1,56 +1,133 @@
 // import React from 'react';
 // import { Link } from 'react-router-dom';
+// import { FaBars } from 'react-icons/fa';
 
-// const Navbar: React.FC = () => {
+// interface NavbarProps {
+//   onMenuClick: () => void;
+// }
+
+// const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
+//   const token = localStorage.getItem('token');
+
 //   return (
-//     <nav className="bg-blue-600 p-4 text-white flex justify-between">
-//       <h1 className="text-xl font-bold">Car Manager</h1>
-//       <div className="space-x-4">
-//         <Link to="/">Home</Link>
-//         <Link to="/about">About</Link>
-//         <Link to="/car">Find Car</Link>
-//         <Link to="/login">Login</Link>
-//         <Link to="/register">Register</Link>
+//     <nav style={{
+//       backgroundColor: '#343a40',
+//       color: 'white',
+//       padding: '1rem',
+//       display: 'flex',
+//       justifyContent: 'space-between',
+//       alignItems: 'center',
+//       position: 'sticky',
+//       top: 0,
+//       zIndex: 1001
+//     }}>
+//       <div style={{ display: 'flex', alignItems: 'center' }}>
+//         <FaBars
+//           onClick={onMenuClick}
+//           style={{ cursor: 'pointer', marginRight: '1rem' }}
+//         />
+//         <Link to="/" style={linkStyle}>Home</Link>
+//         <Link to="/about" style={linkStyle}>About</Link>
+//       </div>
+//       <div>
+//         {!token ? (
+//           <>
+//             <Link to="/login" style={linkStyle}>Login</Link>
+//             <Link to="/register" style={linkStyle}>Register</Link>
+//           </>
+//         ) : (
+//           <button
+//             onClick={() => {
+//               localStorage.removeItem('token');
+//               window.location.href = '/login';
+//             }}
+//             style={{
+//               background: 'none',
+//               border: 'none',
+//               color: 'white',
+//               cursor: 'pointer'
+//             }}
+//           >
+//             Logout
+//           </button>
+//         )}
 //       </div>
 //     </nav>
 //   );
 // };
 
+// const linkStyle: React.CSSProperties = {
+//   color: 'white',
+//   marginRight: '1rem',
+//   textDecoration: 'none'
+// };
+
 // export default Navbar;
 
 
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../store';
+import { logout } from '../store/slices/authSlice';
 
+interface NavbarProps {
+  onMenuClick: () => void;
+}
 
-import { Link, useNavigate } from 'react-router-dom';
-
-const Navbar = () => {
-  const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+    dispatch(logout());
   };
 
   return (
-    <nav className="bg-gray-800 text-white p-4 flex justify-between">
-      <div>
-        <Link to="/" className="mr-4">Home</Link>
-        <Link to="/about" className="mr-4">About</Link>
-        {token && <Link to="/fetch-car">Find Car</Link>}
+    <nav style={{
+      backgroundColor: '#343a40',
+      color: 'white',
+      padding: '1rem',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      position: 'sticky',
+      top: 0,
+      zIndex: 1001
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <FaBars onClick={onMenuClick} style={{ cursor: 'pointer', marginRight: '1rem' }} />
+        <Link to="/" style={linkStyle}>Home</Link>
+        <Link to="/about" style={linkStyle}>About</Link>
       </div>
       <div>
-        {!token ? (
+        {!isAuthenticated ? (
           <>
-            <Link to="/login" className="mr-4">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login" style={linkStyle}>Login</Link>
+            <Link to="/register" style={linkStyle}>Register</Link>
           </>
         ) : (
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout} style={buttonStyle}>
+            Logout
+          </button>
         )}
       </div>
     </nav>
   );
+};
+
+const linkStyle: React.CSSProperties = {
+  color: 'white',
+  marginRight: '1rem',
+  textDecoration: 'none'
+};
+
+const buttonStyle: React.CSSProperties = {
+  background: 'none',
+  border: 'none',
+  color: 'white',
+  cursor: 'pointer'
 };
 
 export default Navbar;

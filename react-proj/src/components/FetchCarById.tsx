@@ -221,8 +221,89 @@
 
 
 
+// import React, { useState } from 'react';
+// import type { Car } from '../types/Car';
+
+// const FetchCarById: React.FC = () => {
+//   const [carID, setCarID] = useState('');
+//   const [car, setCar] = useState<Car | null>(null);
+//   const [error, setError] = useState<string | null>(null);
+//   const [loading, setLoading] = useState(false);
+
+//   const fetchCarById = async () => {
+//     setError(null);
+//     setLoading(true);
+
+//     try {
+//       const token = localStorage.getItem('token'); // Make sure token is stored here
+
+//       if (!token) {
+//         throw new Error('Missing authentication token. Please login.');
+//       }
+
+//       const response = await fetch(`http://localhost:3001/cars/${carID}/maintenance`, {
+//         headers: {
+//           'Authorization': `Bearer ${token}`
+//         }
+//       });
+
+//       if (!response.ok) {
+//         const errBody = await response.json().catch(() => ({}));
+//         throw new Error(errBody?.error || `Error ${response.status}`);
+//       }
+
+//       const data = await response.json();
+//       setCar(data.car); // Assuming backend returns { car, maintenance }
+
+//     } catch (err: unknown) {
+//       if (err instanceof Error) {
+//         setError(err.message);
+//       } else {
+//         setError('Unexpected error');
+//       }
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h2>Find Car by ID</h2>
+//       <input
+//         type="text"
+//         value={carID}
+//         onChange={(e) => setCarID(e.target.value)}
+//         placeholder="Enter car ID"
+//       />
+//       <button onClick={fetchCarById} disabled={loading || !carID}>
+//         {loading ? 'Searching...' : 'Search'}
+//       </button>
+
+//       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+
+//       {car && (
+//         <div style={{ marginTop: '1rem' }}>
+//           <p><strong>Model:</strong> {car.carModel}</p>
+//           <p><strong>Year:</strong> {car.year}</p>
+//           <p><strong>Color:</strong> {car.color}</p>
+//           <p><strong>Rental Rate:</strong> ${car.rentalRate}</p>
+//           <p><strong>Available:</strong> {car.availability ? "Yes" : "No"}</p>
+//           <p><strong>Location ID:</strong> {car.locationID ?? "N/A"}</p>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default FetchCarById;
+
+
+
+
+
 import React, { useState } from 'react';
 import type { Car } from '../types/Car';
+import '../index.css';
 
 const FetchCarById: React.FC = () => {
   const [carID, setCarID] = useState('');
@@ -235,16 +316,11 @@ const FetchCarById: React.FC = () => {
     setLoading(true);
 
     try {
-      const token = localStorage.getItem('token'); // Make sure token is stored here
-
-      if (!token) {
-        throw new Error('Missing authentication token. Please login.');
-      }
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('Missing authentication token. Please login.');
 
       const response = await fetch(`http://localhost:3001/cars/${carID}/maintenance`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        headers: { Authorization: `Bearer ${token}` }
       });
 
       if (!response.ok) {
@@ -253,21 +329,17 @@ const FetchCarById: React.FC = () => {
       }
 
       const data = await response.json();
-      setCar(data.car); // Assuming backend returns { car, maintenance }
-
+      setCar(data.car);
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError('Unexpected error');
-      }
+      if (err instanceof Error) setError(err.message);
+      else setError('Unexpected error');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Find Car by ID</h2>
       <input
         type="text"
@@ -279,16 +351,16 @@ const FetchCarById: React.FC = () => {
         {loading ? 'Searching...' : 'Search'}
       </button>
 
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+      {error && <p className="error">Error: {error}</p>}
 
       {car && (
-        <div style={{ marginTop: '1rem' }}>
+        <div>
           <p><strong>Model:</strong> {car.carModel}</p>
           <p><strong>Year:</strong> {car.year}</p>
           <p><strong>Color:</strong> {car.color}</p>
           <p><strong>Rental Rate:</strong> ${car.rentalRate}</p>
-          <p><strong>Available:</strong> {car.availability ? "Yes" : "No"}</p>
-          <p><strong>Location ID:</strong> {car.locationID ?? "N/A"}</p>
+          <p><strong>Available:</strong> {car.availability ? 'Yes' : 'No'}</p>
+          <p><strong>Location ID:</strong> {car.locationID ?? 'N/A'}</p>
         </div>
       )}
     </div>
