@@ -6,14 +6,27 @@ import {text, varchar, serial, pgTable, decimal, integer, boolean, date} from "d
 
 
 // CUSTOMER TABLE
+// export const CustomerTable = pgTable("customer", {
+//     customerID: serial("customerID").primaryKey(),
+//     firstName: varchar("firstName", { length: 50 }).notNull(), // Changed from "FirstName" to "firstName"
+//     lastName: varchar("lastName", { length: 50 }).notNull(),  // Changed from "LastName" to "lastName"
+//     email: varchar("email", { length: 100 }).notNull().unique(), // Changed from "Email" to "email"
+//     phoneNumber: text("phoneNumber"),                        // Changed from "PhoneNumber" to "phoneNumber"
+//     address: varchar("address", { length: 255 })             // Changed from "Address" to "address"
+// });
+
+
 export const CustomerTable = pgTable("customer", {
-    customerID: serial("customerID").primaryKey(),
-    firstName: varchar("firstName", { length: 50 }).notNull(), // Changed from "FirstName" to "firstName"
-    lastName: varchar("lastName", { length: 50 }).notNull(),  // Changed from "LastName" to "lastName"
-    email: varchar("email", { length: 100 }).notNull().unique(), // Changed from "Email" to "email"
-    phoneNumber: text("phoneNumber"),                        // Changed from "PhoneNumber" to "phoneNumber"
-    address: varchar("address", { length: 255 })             // Changed from "Address" to "address"
+  customerID: serial("customerID").primaryKey(),
+  userID: integer("userID").references(() => UsersTable.id, { onDelete: "cascade" }).notNull(),
+  firstName: varchar("firstName", { length: 50 }).notNull(),
+  lastName: varchar("lastName", { length: 50 }).notNull(),
+  email: varchar("email", { length: 100 }).notNull().unique(),
+  phoneNumber: text("phoneNumber"),
+  address: varchar("address", { length: 255 }),
 });
+
+
 
 
 //LOCATION TABLE

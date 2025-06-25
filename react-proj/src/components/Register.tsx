@@ -158,6 +158,227 @@
 // export default Register;
 
 
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import '../index.css';
+
+// const Register: React.FC = () => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [name, setName] = useState('');
+//   const [error, setError] = useState('');
+//   const navigate = useNavigate();
+
+//   const handleRegister = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     setError('');
+
+//     try {
+//       const res = await fetch('http://localhost:3001/users/signup', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ email, password, name }),
+//       });
+
+//       const data = await res.json();
+//       if (!res.ok) throw new Error(data?.error || 'Registration failed');
+
+//       // ✅ Redirect to verification page with email
+//       navigate(`/verify-user?email=${encodeURIComponent(email)}`);
+//     } catch (err: unknown) {
+//       if (err instanceof Error) setError(err.message);
+//       else setError('Unexpected error');
+//     }
+//   };
+
+//   return (
+//     <div className="container">
+//       <h2>Register</h2>
+//       <form onSubmit={handleRegister}>
+//         <input
+//           type="text"
+//           placeholder="Name"
+//           value={name}
+//           required
+//           onChange={(e) => setName(e.target.value)}
+//         />
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           value={email}
+//           required
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           required
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+//         <button type="submit">Register</button>
+//         {error && <p className="error">{error}</p>}
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Register;
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import '../index.css';
+
+// const Register: React.FC = () => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [name, setName] = useState('');
+//   const [error, setError] = useState('');
+//   const navigate = useNavigate();
+
+//   const handleRegister = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     setError('');
+
+//     try {
+//       const res = await fetch('http://localhost:3001/users/signup', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ email, password, name }),
+//       });
+
+//       const data = await res.json();
+//       if (!res.ok) throw new Error(data?.error || 'Registration failed');
+
+//       // ✅ Redirect to verification page with email
+//       navigate(`/verify-user?email=${encodeURIComponent(email)}`);
+//     } catch (err: unknown) {
+//       if (err instanceof Error) setError(err.message);
+//       else setError('Unexpected error');
+//     }
+//   };
+
+//   return (
+//     <div className="container">
+//       <h2>Register</h2>
+//       <form onSubmit={handleRegister}>
+//         <input
+//           type="text"
+//           placeholder="Name"
+//           value={name}
+//           required
+//           onChange={(e) => setName(e.target.value)}
+//         />
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           value={email}
+//           required
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           required
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+//         <button type="submit">Register</button>
+//         {error && <p className="error">{error}</p>}
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Register;
+
+
+
+
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import '../index.css';
+
+// const Register: React.FC = () => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [name, setName] = useState('');
+//   const [role, setRole] = useState<'user' | 'admin'>('user');
+//   const [error, setError] = useState('');
+//   const navigate = useNavigate();
+
+//   const handleRegister = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     setError('');
+
+//     try {
+//       const res = await fetch('http://localhost:3001/users/signup', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ email, password, name, role }), // ✅ include role
+//       });
+
+//       const data = await res.json();
+//       if (!res.ok) throw new Error(data?.error || 'Registration failed');
+
+//       navigate(`/verify-user?email=${encodeURIComponent(email)}`);
+//     } catch (err: unknown) {
+//       if (err instanceof Error) setError(err.message);
+//       else setError('Unexpected error');
+//     }
+//   };
+
+//   return (
+//     <div className="container">
+//       <h2>Register</h2>
+//       <form onSubmit={handleRegister}>
+//         <input
+//           type="text"
+//           placeholder="Name"
+//           value={name}
+//           required
+//           onChange={(e) => setName(e.target.value)}
+//         />
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           value={email}
+//           required
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           required
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+
+//         {/* ✅ Role dropdown */}
+//         <select
+//           value={role}
+//           onChange={(e) => setRole(e.target.value as 'user' | 'admin')}
+//           required
+//         >
+//           <option value="user">User</option>
+//           <option value="admin">Admin</option>
+//         </select>
+
+//         <button type="submit">Register</button>
+//         {error && <p className="error">{error}</p>}
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Register;
+
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
@@ -166,6 +387,7 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [role, setRole] = useState(''); // 👈 Add role state
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -177,7 +399,7 @@ const Register: React.FC = () => {
       const res = await fetch('http://localhost:3001/users/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, name }),
+        body: JSON.stringify({ email, password, name, role }), // 👈 Include role
       });
 
       const data = await res.json();
@@ -216,6 +438,14 @@ const Register: React.FC = () => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+        
+        {/* 👇 Role Dropdown */}
+        <select value={role} onChange={(e) => setRole(e.target.value)} required>
+          <option value="">Select Role</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+
         <button type="submit">Register</button>
         {error && <p className="error">{error}</p>}
       </form>
@@ -224,4 +454,3 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-

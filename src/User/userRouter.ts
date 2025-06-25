@@ -29,7 +29,9 @@ const router = Router();
 
 router.post('/signup', signupHandler);
 router.post('/login', loginHandler);
-router.post('/verify', verifyUserHandler); // ✅ No issue here
+router.post('/verify', verifyUserHandler);
+// router.get('/my/bookings', authenticateToken, getMyBookings);
+// router.get('/my/maintenance', authenticateToken, getMyMaintenance);
 
 export default router;
 

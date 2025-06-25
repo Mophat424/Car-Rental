@@ -99,6 +99,7 @@ import customerRouter from './Customer/customerRouter'; //
 import userRouter from './User/userRouter';
 import paymentsRouter from './Payments/paymentsRouter';
 import maintenanceRouter from './Maintenance/maintenanceRouter';
+import bookingsRouter from './Bookings/bookingsRouter';
 import cors from "cors";
 
 dotenv.config();
@@ -117,7 +118,7 @@ app.use(cors({
 app.use('/cars', carRouter);
 app.use('/customers', customerRouter); // 
 app.use('/users', userRouter);
-
+app.use('/bookings', bookingsRouter);
 app.use('/payments', paymentsRouter);
 app.use('/maintenance', maintenanceRouter);
 

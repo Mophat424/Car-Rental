@@ -115,11 +115,84 @@
 
 // export default App;
 
+
+
+// import React, { useState } from 'react';
+// import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { RootState } from './store';
+
+// import Navbar from './components/Navbar';
+// import Sidebar from './components/Sidebar';
+// import Login from './components/Login';
+// import Register from './components/Register';
+// import FetchCarById from './components/FetchCarById';
+// import About from './pages/About';
+// import Landing from './pages/Landing';
+// import VerifyUser from './pages/VerifyUser';
+// import AdminDashboard from './pages/AdminDashboard';
+// import UserDashboard from './pages/UserDashboard';
+// import RoleProtectedRoute from './components/RoleProtectedRoute';
+
+// const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+//   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+//   return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+// };
+
+// function App() {
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+//   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+
+//   return (
+//     <Router>
+//       <Navbar onMenuClick={toggleSidebar} />
+//       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+
+//       <Routes>
+//         <Route path="/" element={<Landing />} />
+//         <Route path="/about" element={<About />} />
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/register" element={<Register />} />
+//         <Route path="/verify-user" element={<VerifyUser />} />
+//         <Route path="/fetch-car" element={
+//           <PrivateRoute>
+//             <FetchCarById />
+//           </PrivateRoute>
+//         } />
+//         {/* More table routes */}
+//         <Route path="/tables/customers" element={<div>Customers</div>} />
+//         <Route path="/tables/cars" element={<div>Cars</div>} />
+//         <Route path="/tables/locations" element={<div>Locations</div>} />
+//         <Route path="/tables/reservations" element={<div>Reservations</div>} />
+//         <Route path="/tables/bookings" element={<div>Bookings</div>} />
+//         <Route path="/tables/payments" element={<div>Payments</div>} />
+//         <Route path="/tables/maintenance" element={<div>Maintenance</div>} />
+//         <Route path="/tables/insurance" element={<div>Insurance</div>} />
+//         <Route path="/admin-dashboard"  element={<RoleProtectedRoute requiredRole="admin"><AdminDashboard />    </RoleProtectedRoute>
+//   }
+// />
+
+// <Route
+//   path="/user-dashboard"
+//   element={
+//     <RoleProtectedRoute requiredRole="user">
+//       <UserDashboard />
+//     </RoleProtectedRoute>
+//   }
+// />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
+
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
-
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Login from './components/Login';
@@ -128,6 +201,9 @@ import FetchCarById from './components/FetchCarById';
 import About from './pages/About';
 import Landing from './pages/Landing';
 import VerifyUser from './pages/VerifyUser';
+import AdminDashboard from './pages/AdminDashboard';
+import UserDashboard from './pages/UserDashboard';
+import RoleProtectedRoute from './components/RoleProtectedRoute';
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
@@ -149,12 +225,37 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-user" element={<VerifyUser />} />
-        <Route path="/fetch-car" element={
-          <PrivateRoute>
-            <FetchCarById />
-          </PrivateRoute>
-        } />
-        {/* More table routes */}
+
+        <Route
+          path="/fetch-car"
+          element={
+            <PrivateRoute>
+              <FetchCarById />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Admin Dashboard (Protected by Role) */}
+        <Route
+          path="/admin-dashboard"
+          element={
+            <RoleProtectedRoute requiredRole="admin">
+              <AdminDashboard />
+            </RoleProtectedRoute>
+          }
+        />
+
+        {/* User Dashboard (Protected by Role) */}
+        <Route
+          path="/user-dashboard"
+          element={
+            <RoleProtectedRoute requiredRole="customer">
+              <UserDashboard />
+            </RoleProtectedRoute>
+          }
+        />
+
+        {/* Tables */}
         <Route path="/tables/customers" element={<div>Customers</div>} />
         <Route path="/tables/cars" element={<div>Cars</div>} />
         <Route path="/tables/locations" element={<div>Locations</div>} />

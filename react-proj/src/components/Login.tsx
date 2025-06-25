@@ -1,5 +1,7 @@
 // import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { loginSuccess } from '../store/slices/authSlice';
 // import '../index.css';
 
 // const Login: React.FC = () => {
@@ -7,6 +9,7 @@
 //   const [password, setPassword] = useState('');
 //   const [error, setError] = useState('');
 //   const navigate = useNavigate();
+//   const dispatch = useDispatch();
 
 //   const handleLogin = async (e: React.FormEvent) => {
 //     e.preventDefault();
@@ -22,11 +25,17 @@
 //       const data = await res.json();
 //       if (!res.ok) throw new Error(data?.error || 'Login failed');
 
-//       localStorage.setItem('token', data.token);
+//       dispatch(loginSuccess({ token: data.token, user: data.user }));
 //       navigate('/fetch-car');
 //     } catch (err: unknown) {
 //       if (err instanceof Error) setError(err.message);
 //       else setError('An unknown error occurred.');
+//     }
+
+//     if (data.user.role === 'admin') {
+//   navigate('/admin-dashboard');
+//     } else {
+//   navigate('/user-dashboard');
 //     }
 //   };
 
@@ -34,20 +43,8 @@
 //     <div className="container">
 //       <h2>Login</h2>
 //       <form onSubmit={handleLogin}>
-//         <input
-//           type="email"
-//           placeholder="Email"
-//           value={email}
-//           required
-//           onChange={(e) => setEmail(e.target.value)}
-//         />
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           value={password}
-//           required
-//           onChange={(e) => setPassword(e.target.value)}
-//         />
+//         <input type="email" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} />
+//         <input type="password" placeholder="Password" value={password} required onChange={(e) => setPassword(e.target.value)} />
 //         <button type="submit">Login</button>
 //         {error && <p className="error">Error: {error}</p>}
 //       </form>
@@ -56,7 +53,6 @@
 // };
 
 // export default Login;
-
 
 
 import React, { useState } from 'react';
@@ -87,7 +83,13 @@ const Login: React.FC = () => {
       if (!res.ok) throw new Error(data?.error || 'Login failed');
 
       dispatch(loginSuccess({ token: data.token, user: data.user }));
-      navigate('/fetch-car');
+
+      // Redirect based on user role
+      if (data.user.role === 'admin') {
+        navigate('/admin-dashboard');
+      } else {
+        navigate('/user-dashboard');
+      }
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
       else setError('An unknown error occurred.');
@@ -98,8 +100,20 @@ const Login: React.FC = () => {
     <div className="container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} required onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Login</button>
         {error && <p className="error">Error: {error}</p>}
       </form>
@@ -108,4 +122,5 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+
 

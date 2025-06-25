@@ -241,6 +241,14 @@ export const getBookings = async () => {
 
 };
 
+
+export const getBookingsByCustomerId = async (customerId: number) => {
+  return await db
+    .select()
+    .from(bookings)
+    .where(eq(bookings.customerID, customerId));
+};
+
 export const createBooking = async (data: { carID: number; customerID: number; rentalStartDate: string; rentalEndDate: string; totalAmount?: string }) => {
   const [result] = await db
     .insert(bookings)

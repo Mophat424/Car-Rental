@@ -1,17 +1,17 @@
+
 // export interface Car {
 //   carID: number;
 //   carModel: string;
 //   year: string;
-//   color: string;
-//   rentalRate: string; 
+//   color?: string;
+//   rentalRate: string;
 //   availability: boolean;
-//   locationID: number | null;
+//   locationID?: number;
 // }
 
 
-
 export interface Car {
-  carID: number;
+  carID?: number; 
   carModel: string;
   year: string;
   color?: string;
@@ -19,6 +19,7 @@ export interface Car {
   availability: boolean;
   locationID?: number;
 }
+
 
 export interface MaintenanceRecord {
   maintenanceID: number;

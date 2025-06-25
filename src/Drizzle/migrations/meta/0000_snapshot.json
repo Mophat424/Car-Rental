@@ -1,5 +1,5 @@
 {
-  "id": "7d639268-76bd-417c-af26-79ee8cfa5cfa",
+  "id": "7221d988-4fa1-4c4a-888b-e0004b322e81",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -129,21 +129,7 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "car_locationID_locations_locationID_fk": {
-          "name": "car_locationID_locations_locationID_fk",
-          "tableFrom": "car",
-          "tableTo": "locations",
-          "columnsFrom": [
-            "locationID"
-          ],
-          "columnsTo": [
-            "locationID"
-          ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
@@ -158,6 +144,12 @@
           "name": "customerID",
           "type": "serial",
           "primaryKey": true,
+          "notNull": true
+        },
+        "userID": {
+          "name": "userID",
+          "type": "integer",
+          "primaryKey": false,
           "notNull": true
         },
         "firstName": {
@@ -192,7 +184,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "customer_userID_users_id_fk": {
+          "name": "customer_userID_users_id_fk",
+          "tableFrom": "customer",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userID"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "customer_email_unique": {
@@ -538,6 +544,19 @@
           "primaryKey": false,
           "notNull": true,
           "default": "'now()'"
+        },
+        "verificationCode": {
+          "name": "verificationCode",
+          "type": "varchar(6)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "isVerified": {
+          "name": "isVerified",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
         }
       },
       "indexes": {},

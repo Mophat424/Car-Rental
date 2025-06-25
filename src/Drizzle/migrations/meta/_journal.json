@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1749826142355,
-      "tag": "0000_free_corsair",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1749974011002,
-      "tag": "0001_thankful_lifeguard",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1750730960366,
-      "tag": "0002_even_prodigy",
+      "when": 1750847107517,
+      "tag": "0000_clammy_shinobi_shaw",
       "breakpoints": true
     }
   ]
