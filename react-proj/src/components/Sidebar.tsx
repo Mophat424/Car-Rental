@@ -148,8 +148,161 @@
 
 
 // components/Sidebar.tsx
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+
+// interface SidebarProps {
+//   isOpen: boolean;
+//   onClose: () => void;
+// }
+
+// const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+//   return (
+//     <div
+//       style={{
+//         position: 'fixed',
+//         top: 0,
+//         left: isOpen ? 0 : '-250px', // slide in from left
+//         width: '250px',
+//         height: '100%',
+//         backgroundColor: '#343a40',
+//         color: 'white',
+//         transition: 'left 0.3s ease-in-out',
+//         zIndex: 1000,
+//         paddingTop: '60px'
+//       }}
+//     >
+//       <button
+//         onClick={onClose}
+//         style={{
+//           position: 'absolute',
+//           top: '10px',
+//           right: '10px',
+//           background: 'none',
+//           color: 'white',
+//           border: 'none',
+//           fontSize: '1.2rem',
+//           cursor: 'pointer'
+//         }}
+//       >
+//         ×
+//       </button>
+
+//     <ul style={{ listStyle: 'none', padding: 0 }}>
+//   <li><Link to="/tables/customers" style={linkStyle} onClick={onClose}>Customers</Link></li>
+//   <li><Link to="/tables/cars" style={linkStyle} onClick={onClose}>Cars</Link></li>
+//   <li><Link to="/tables/locations" style={linkStyle} onClick={onClose}>Locations</Link></li>
+//   <li><Link to="/tables/reservations" style={linkStyle} onClick={onClose}>Reservations</Link></li>
+//   <li><Link to="/tables/bookings" style={linkStyle} onClick={onClose}>Bookings</Link></li>
+//   <li><Link to="/tables/payments" style={linkStyle} onClick={onClose}>Payments</Link></li>
+//   <li><Link to="/tables/maintenance" style={linkStyle} onClick={onClose}>Maintenance</Link></li>
+//   <li><Link to="/tables/insurance" style={linkStyle} onClick={onClose}>Insurance</Link></li>
+// </ul>
+
+//     </div>
+//   );
+// };
+
+// const linkStyle = {
+//   color: 'white',
+//   textDecoration: 'none',
+//   display: 'block',
+//   padding: '10px 20px'
+// };
+
+// export default Sidebar;
+
+
+
+
+
+
+
+// //GROK
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../store';
+
+// interface SidebarProps {
+//   isOpen: boolean;
+//   onClose: () => void;
+// }
+
+// const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+//   const { user } = useSelector((state: RootState) => state.auth);
+
+//   return (
+//     <div
+//       style={{
+//         position: 'fixed',
+//         top: 0,
+//         left: isOpen ? 0 : '-250px',
+//         width: '250px',
+//         height: '100%',
+//         backgroundColor: '#343a40',
+//         color: 'white',
+//         transition: 'left 0.3s ease-in-out',
+//         zIndex: 1000,
+//         paddingTop: '60px',
+//       }}
+//     >
+//       <button
+//         onClick={onClose}
+//         style={{
+//           position: 'absolute',
+//           top: '10px',
+//           right: '10px',
+//           background: 'none',
+//           color: 'white',
+//           border: 'none',
+//           fontSize: '1.2rem',
+//           cursor: 'pointer',
+//         }}
+//       >
+//         ×
+//       </button>
+
+//       <ul style={{ listStyle: 'none', padding: 0 }}>
+//         {user?.role === 'admin' ? (
+//           <>
+//             <li><Link to="/tables/customers" style={linkStyle} onClick={onClose}>Customers</Link></li>
+//             <li><Link to="/tables/cars" style={linkStyle} onClick={onClose}>Cars</Link></li>
+//             <li><Link to="/tables/locations" style={linkStyle} onClick={onClose}>Locations</Link></li>
+//             <li><Link to="/tables/reservations" style={linkStyle} onClick={onClose}>Reservations</Link></li>
+//             <li><Link to="/tables/bookings" style={linkStyle} onClick={onClose}>All Bookings</Link></li>
+//             <li><Link to="/tables/payments" style={linkStyle} onClick={onClose}>Payments</Link></li>
+//             <li><Link to="/tables/maintenance" style={linkStyle} onClick={onClose}>Maintenance</Link></li>
+//             <li><Link to="/tables/insurance" style={linkStyle} onClick={onClose}>Insurance</Link></li>
+//           </>
+//         ) : (
+//           <>
+//             <li><Link to="/user-dashboard" style={linkStyle} onClick={onClose}>My Dashboard</Link></li>
+//             <li><Link to="/bookings" style={linkStyle} onClick={onClose}>My Bookings</Link></li>
+//           </>
+//         )}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// const linkStyle = {
+//   color: 'white',
+//   textDecoration: 'none',
+//   display: 'block',
+//   padding: '10px 20px',
+// };
+
+// export default Sidebar;
+
+
+
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -157,19 +310,21 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  const { user } = useSelector((state: RootState) => state.auth);
+
   return (
     <div
       style={{
         position: 'fixed',
         top: 0,
-        left: isOpen ? 0 : '-250px', // slide in from left
+        left: isOpen ? 0 : '-250px',
         width: '250px',
         height: '100%',
         backgroundColor: '#343a40',
         color: 'white',
         transition: 'left 0.3s ease-in-out',
         zIndex: 1000,
-        paddingTop: '60px'
+        paddingTop: '60px',
       }}
     >
       <button
@@ -182,23 +337,33 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           color: 'white',
           border: 'none',
           fontSize: '1.2rem',
-          cursor: 'pointer'
+          cursor: 'pointer',
         }}
       >
         ×
       </button>
 
-    <ul style={{ listStyle: 'none', padding: 0 }}>
-  <li><Link to="/tables/customers" style={linkStyle} onClick={onClose}>Customers</Link></li>
-  <li><Link to="/tables/cars" style={linkStyle} onClick={onClose}>Cars</Link></li>
-  <li><Link to="/tables/locations" style={linkStyle} onClick={onClose}>Locations</Link></li>
-  <li><Link to="/tables/reservations" style={linkStyle} onClick={onClose}>Reservations</Link></li>
-  <li><Link to="/tables/bookings" style={linkStyle} onClick={onClose}>Bookings</Link></li>
-  <li><Link to="/tables/payments" style={linkStyle} onClick={onClose}>Payments</Link></li>
-  <li><Link to="/tables/maintenance" style={linkStyle} onClick={onClose}>Maintenance</Link></li>
-  <li><Link to="/tables/insurance" style={linkStyle} onClick={onClose}>Insurance</Link></li>
-</ul>
-
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {user?.role === 'admin' ? (
+          <>
+            <li><Link to="/tables/customers" style={linkStyle} onClick={onClose}>Customers</Link></li>
+            <li><Link to="/tables/cars" style={linkStyle} onClick={onClose}>Cars</Link></li>
+            <li><Link to="/tables/locations" style={linkStyle} onClick={onClose}>Locations</Link></li>
+            <li><Link to="/tables/reservations" style={linkStyle} onClick={onClose}>Reservations</Link></li>
+            <li><Link to="/tables/bookings" style={linkStyle} onClick={onClose}>All Bookings</Link></li>
+            <li><Link to="/tables/payments" style={linkStyle} onClick={onClose}>Payments</Link></li>
+            <li><Link to="/tables/maintenance" style={linkStyle} onClick={onClose}>Maintenance</Link></li>
+            <li><Link to="/tables/insurance" style={linkStyle} onClick={onClose}>Insurance</Link></li>
+          </>
+        ) : (
+          <>
+            <li><Link to="/user-dashboard" style={linkStyle} onClick={onClose}>My Dashboard</Link></li>
+            <li><Link to="/cars" style={linkStyle} onClick={onClose}>View Cars</Link></li>
+            <li><Link to="/bookings/new" style={linkStyle} onClick={onClose}>Book a Car</Link></li>
+            <li><Link to="/bookings" style={linkStyle} onClick={onClose}>My Bookings</Link></li>
+          </>
+        )}
+      </ul>
     </div>
   );
 };
@@ -207,7 +372,7 @@ const linkStyle = {
   color: 'white',
   textDecoration: 'none',
   display: 'block',
-  padding: '10px 20px'
+  padding: '10px 20px',
 };
 
 export default Sidebar;

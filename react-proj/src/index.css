@@ -1,288 +1,201 @@
-/* body {
+/* === Global Reset and Base Styles === */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f4f6f8;
+  color: #2e2e2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* === Container === */
 .container {
-  max-width: 500px;
+  max-width: 650px;
   margin: 3rem auto;
   padding: 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+/* === Headings === */
+h1, h2, h3, h4 {
+  color: #1a1a1a;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2rem;
 }
 
+/* === Inputs & Buttons === */
 input,
+select,
 button {
   display: block;
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.8rem 1.2rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.error {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.page-center {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.hover-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-
-
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.hover-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.hover-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
- */
-
- body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
-  overflow-x: hidden; 
-}
-
-.container {
-  max-width: 500px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #2c3e50;
+  font-size: 1rem;
 }
 
 input,
-button {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
+select {
   border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: #fdfdfd;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+input:focus,
+select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
+  outline: none;
 }
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.error {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.page-center {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.hover-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 
 select {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  font-size: 1rem;
-  color: #554444;
-  appearance: none; /* Removes native arrow in some browsers */
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7H0z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E");
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 7 5-7z' fill='%23333'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 10px 7px;
 }
 
-select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px #007bff33;
+/* === Buttons === */
+button {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.booking-form button {
+  background-color: #28a745;
+}
+
+.booking-form button:hover {
+  background-color: #218838;
+}
+
+/* === Errors === */
+.error {
+  color: #dc3545;
+  text-align: center;
+  font-weight: 500;
   margin-top: 1rem;
 }
 
-th, td {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
+/* === Page Centering === */
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* === Cards & Animations === */
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.hover-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* === Slider Animation === */
+@keyframes slide {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* === Tables === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+  padding: 1rem;
   text-align: left;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
 }
 
+tr:last-child td {
+  border-bottom: none;
+}
 
-/* BookingForm-specific refinements */
+/* === Booking Form Specific === */
 .booking-form {
   margin-top: 2rem;
 }
 
-.booking-form select,
-.booking-form input[type="date"] {
+.booking-form input[type="date"],
+.booking-form select {
   width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
-.booking-form select:focus,
-.booking-form input[type="date"]:focus {
-  border-color: #007bff;
-  outline: none;
-}
+/* === Responsive Improvements === */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
 
-.booking-form p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
+  h2 {
+    font-size: 1.6rem;
+  }
 
-.booking-form h3 {
-  margin-bottom: 1.5rem;
-  color: #2c3e50;
-  text-align: center;
-}
+  table,
+  th,
+  td {
+    font-size: 14px;
+  }
 
-.booking-form button {
-  background-color: #28a745;
-  transition: background-color 0.3s ease;
-}
+  button {
+    font-size: 15px;
+  }
 
-.booking-form button:hover {
-  background-color: #218838;
+  .hover-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }
-
-/* BookingForm styling */
-.booking-form select,
-.booking-form input[type="date"] {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.booking-form select:focus,
-.booking-form input[type="date"]:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.booking-form button {
-  background-color: #28a745;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  padding: 0.75rem;
-  width: 100%;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.booking-form button:hover {
-  background-color: #218838;
-}
-
-.booking-form h3 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
