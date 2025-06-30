@@ -1,5 +1,8 @@
 [build]
-command = "pnpm build"
+  command = "pnpm run build"
 
 [start]
-command = "pnpm start"
+  command = "pnpm run dev"
+
+[env]
+  NODE_ENV = "development"
