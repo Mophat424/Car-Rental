@@ -43,7 +43,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "CommonJS",
-    "rootDir": ".", // Changed to project root
+    "rootDir": "src", // Changed to project root
     "moduleResolution": "node",
     "outDir": "./dist", // Output will be relative to root
     "esModuleInterop": true,
