@@ -76,8 +76,8 @@ import { loginUser, clearError } from '../store/slices/authSlice';
 const Login: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const dispatch = useAppDispatch();
-const { error, user, isAuthenticated } = useAppSelector((state) => state.auth);  
-// const { error } = useAppSelector((state) => state.auth);
+// const { error, user, isAuthenticated } = useAppSelector((state) => state.auth);  
+const { error } = useAppSelector((state) => state.auth);
 
   const navigate = useNavigate();
 
